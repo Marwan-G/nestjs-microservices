@@ -1,135 +1,158 @@
-# Turborepo starter
+# NestJS Microservices Architecture
 
-This Turborepo starter is maintained by the Turborepo core team.
+A comprehensive microservices architecture built with NestJS, TypeScript, and Turborepo for efficient monorepo management.
 
-## Using this example
+## 🏗️ Architecture Overview
 
-Run the following command:
+This project demonstrates a modern microservices architecture with:
+- **Independent services** that can be deployed separately
+- **Shared packages** for common functionality
+- **Monorepo management** with Turborepo for optimal builds
+- **TypeScript** throughout the entire stack
 
-```sh
-npx create-turbo@latest
+## 📦 What's Inside?
+
+### Microservices
+
+- **`orders-service`** - Order management and processing
+- **`product-service`** - Product catalog and inventory management  
+- **`users-service`** - User authentication and profile management
+
+### Shared Packages
+
+- **`@repo/ui`** - Shared UI components library
+- **`@repo/eslint-config`** - ESLint configurations for consistent code quality
+- **`@repo/typescript-config`** - TypeScript configurations used across all services
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js (v18 or higher)
+- npm, yarn, or pnpm
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/Marwan-G/nestjs-microservices.git
+cd nestjs-microservices
+
+# Install dependencies
+npm install
 ```
 
-## What's inside?
+### Development
 
-This Turborepo includes the following packages/apps:
+To develop all microservices simultaneously:
 
-### Apps and Packages
+```bash
+# Start all services
+npm run dev
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
-```
-
-You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
-
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
+# Or using turbo directly
 npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
 ```
 
-You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+To develop a specific service:
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
+```bash
+# Start only the orders service
+npx turbo dev --filter=orders-service
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
+# Start only the product service  
+npx turbo dev --filter=product-service
 
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
+# Start only the users service
+npx turbo dev --filter=users-service
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+### Building
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+To build all services and packages:
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
+```bash
+# Build everything
+npx turbo build
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
+# Build a specific service
+npx turbo build --filter=orders-service
 ```
 
-## Useful Links
+## 🛠️ Service Details
 
-Learn more about the power of Turborepo:
+### Orders Service
+- **Port**: 3001
+- **Purpose**: Handle order creation, processing, and management
+- **Features**: Order lifecycle, payment integration, status tracking
 
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+### Product Service  
+- **Port**: 3002
+- **Purpose**: Manage product catalog and inventory
+- **Features**: Product CRUD, inventory management, search functionality
+
+### Users Service
+- **Port**: 3003  
+- **Purpose**: User authentication and profile management
+- **Features**: User registration, authentication, profile management
+
+## 🔧 Development Tools
+
+This monorepo includes:
+
+- **[TypeScript](https://www.typescriptlang.org/)** - Static type checking
+- **[ESLint](https://eslint.org/)** - Code linting and quality
+- **[Prettier](https://prettier.io)** - Code formatting
+- **[Turborepo](https://turborepo.com/)** - Monorepo build system
+- **[NestJS](https://nestjs.com/)** - Progressive Node.js framework
+
+## 📁 Project Structure
+
+```
+microservices/
+├── apps/
+│   ├── orders-service/     # Order management microservice
+│   ├── product-service/    # Product catalog microservice
+│   └── users-service/      # User management microservice
+├── packages/
+│   ├── ui/                 # Shared UI components
+│   ├── eslint-config/      # Shared ESLint configuration
+│   └── typescript-config/  # Shared TypeScript configuration
+├── package.json
+└── turbo.json
+```
+
+## 🚀 Deployment
+
+Each service can be deployed independently:
+
+```bash
+# Build specific service for production
+npx turbo build --filter=orders-service
+
+# Deploy to your preferred platform
+# Each service has its own Dockerfile and deployment config
+```
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+## 🔗 Useful Links
+
+- [NestJS Documentation](https://docs.nestjs.com/)
+- [Turborepo Documentation](https://turborepo.com/docs)
+- [TypeScript Documentation](https://www.typescriptlang.org/docs/)
+- [Microservices Best Practices](https://microservices.io/)
+
+---
+
+**Built with ❤️ using NestJS and Turborepo**
