@@ -10,7 +10,8 @@ export class OrdersController {
 
   @MessagePattern('create_order')
   async createOrder(createOrderDto: CreateOrderDto) {
-    return this.ordersService.create(createOrderDto);
+    return {message: "order created", createOrderDto}
+    // return this.ordersService.create(createOrderDto);
   }
 
   @MessagePattern('get_all_orders')
