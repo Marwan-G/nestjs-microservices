@@ -1,0 +1,7 @@
+
+export const  NestMicroservice_CLIENT = {
+
+    USER_SERVICE: "USER_SERVICE",
+    ORDER_SERVICE:  "USER_ORDER",
+    PRODUCTS_SERVICE: "USER_PRODUCT"
+}
